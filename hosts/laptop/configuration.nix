@@ -1,5 +1,13 @@
 { inputs, pkgs,  ... }:
 {
+
+    imports =
+        [ # Include the results of the hardware scan.
+            /etc/nixos/hardware-configuration.nix
+            inputs.home-manager.nixosModules.default
+            ../../modules/nvf
+        ];
+
     hardware = {
         bluetooth.enable = true;
         bluetooth.powerOnBoot = true;
@@ -66,12 +74,6 @@
         docker.enable = true;
     };
 
-    imports =
-        [ # Include the results of the hardware scan.
-            ./hardware-configuration.nix
-            inputs.home-manager.nixosModules.default
-            ../../modules/nvf
-        ];
 
 
     # Bootloader.
